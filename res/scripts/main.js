@@ -6,6 +6,18 @@ var ctx = canvas.getContext("2d");
 ctx.fillStyle = "#ffffff";
 ctx.fillRect(1, 1, 360, 360);
 
+// Array to store data and values
+var values = [];
+
+// Array to store property of a value
+var valueProp = [];
+
+// Function to manage 2-dim properties in 1-dim array [Euclid's Division Lemma]
+var getValueNum = function(x, y,size) {
+    return (((size * (x - 1)) + y) - 1);
+}
+
+// Function that draws a sudoku grid
 var drawGrid = function(context) {
     // Set stroke color to black
     context.strokeStyle = "#000000";
@@ -41,4 +53,13 @@ var drawGrid = function(context) {
     context.strokeWidth = 1;
 };
 
+// Draw grid
 drawGrid(ctx);
+
+// Init array
+for (x = 0; x < 9; x++) {
+    for (y = 0; y < 9; y++) {
+        values[getValueNum((x + 1), (y+ 1), 9)] = 0;
+        valueProp[getValueNum((x+ 1), (y+ 1), 9)] = 0;
+    }
+}
