@@ -17,6 +17,45 @@ var getValueNum = function(x, y,size) {
     return (((size * (x - 1)) + y) - 1);
 }
 
+var SelectArray = function(array, relx, rely) {
+    var val;
+    if (array == 1) {
+        
+    }
+    
+    if (array == 2) {
+        
+    }
+    
+    if (array == 3) {
+        
+    }
+    
+    if (array == 4) {
+        
+    }
+    
+    if (array == 5) {
+        
+    }
+    
+    if (array == 6) {
+        
+    }
+    
+    if (array == 7) {
+        
+    }
+    
+    if (array == 8) {
+        
+    }
+    
+    if (array == 9) {
+        
+    }
+};
+
 // Function that draws a sudoku grid
 var drawGrid = function(context) {
     // Set stroke color to black
@@ -51,6 +90,7 @@ var drawGrid = function(context) {
     
     context.lineWidth = 1;
     context.strokeWidth = 1;
+    
 };
 
 // Draw grid
