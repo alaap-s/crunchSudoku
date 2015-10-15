@@ -7,9 +7,11 @@ ctx.fillStyle = "#ffffff";
 ctx.fillRect(1, 1, 360, 360);
 
 // Mouse Events
-canvas.addEventListener("mousemove", mouseDown, false);
+canvas.addEventListener("mousemove", mouseHover, false);
+canvas.addEventListener("click", mouseDown, false);
 var clickX;
 var clickY;
+var xCords, yCords;
 
 // Array to store data and values
 var values = [];
@@ -28,14 +30,14 @@ var clear = function(context) {
     ctx.fillRect(1, 1, 360, 360);
 }
 
-var selectValue = function(x, y) {
+var hoverValue = function(x, y) {
     clear(ctx);
     drawGrid(ctx);
     ctx.fillStyle = "#388e3c";
     ctx.fillRect((((x-1) * 40) + 2), (((y-1) * 40) + 2), 38, 38);
 }
 
-function mouseDown(event) {
+function mouseHover(event) {
     clickX = event.offsetX;
     clickY = event.offsetY;
     
@@ -45,7 +47,6 @@ function mouseDown(event) {
     RawCordsX = (clickX - 1) / 40;
     RawCordsY = (clickY - 1) / 40;
     
-    var xCords, yCords;
     
     if (RawCordsX >= 0 && RawCordsX <= 1){ xCords = 1; }
     if (RawCordsX > 1 && RawCordsX <= 2) { xCords = 2; }
@@ -67,7 +68,11 @@ function mouseDown(event) {
     if (RawCordsY > 7 && RawCordsY <= 8) { yCords = 8; }
     if (RawCordsY > 8 && RawCordsY <= 9) { yCords = 9; }
     
-    selectValue(xCords, yCords);
+    hoverValue(xCords, yCords);
+}
+
+function mouseDown(event) {
+    
 }
 
 // Function that draws a sudoku grid
