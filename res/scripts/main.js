@@ -7,7 +7,7 @@ ctx.fillStyle = "#ffffff";
 ctx.fillRect(1, 1, 360, 360);
 
 // Mouse Events
-canvas.addEventListener("mousedown", mouseDown, false);
+canvas.addEventListener("mousemove", mouseDown, false);
 var clickX;
 var clickY;
 
@@ -22,9 +22,52 @@ var getValueNum = function(x, y,size) {
     return (((size * (x - 1)) + y) - 1);
 }
 
+var clear = function(context) {
+    // Make a white [#ffffff] background
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(1, 1, 360, 360);
+}
+
+var selectValue = function(x, y) {
+    clear(ctx);
+    drawGrid(ctx);
+    ctx.fillStyle = "#388e3c";
+    ctx.fillRect((((x-1) * 40) + 2), (((y-1) * 40) + 2), 38, 38);
+}
+
 function mouseDown(event) {
     clickX = event.offsetX;
     clickY = event.offsetY;
+    
+    var RawCordsX;
+    var RawCordsY;
+    
+    RawCordsX = (clickX - 1) / 40;
+    RawCordsY = (clickY - 1) / 40;
+    
+    var xCords, yCords;
+    
+    if (RawCordsX >= 0 && RawCordsX <= 1){ xCords = 1; }
+    if (RawCordsX > 1 && RawCordsX <= 2) { xCords = 2; }
+    if (RawCordsX > 2 && RawCordsX <= 3) { xCords = 3; }
+    if (RawCordsX > 3 && RawCordsX <= 4) { xCords = 4; }
+    if (RawCordsX > 4 && RawCordsX <= 5) { xCords = 5; }
+    if (RawCordsX > 5 && RawCordsX <= 6) { xCords = 6; }
+    if (RawCordsX > 6 && RawCordsX <= 7) { xCords = 7; }
+    if (RawCordsX > 7 && RawCordsX <= 8) { xCords = 8; }
+    if (RawCordsX > 8 && RawCordsX <= 9) { xCords = 9; }
+    
+    if (RawCordsY >= 0 && RawCordsY <= 1){ yCords = 1; }
+    if (RawCordsY > 1 && RawCordsY <= 2) { yCords = 2; }
+    if (RawCordsY > 2 && RawCordsY <= 3) { yCords = 3; }
+    if (RawCordsY > 3 && RawCordsY <= 4) { yCords = 4; }
+    if (RawCordsY > 4 && RawCordsY <= 5) { yCords = 5; }
+    if (RawCordsY > 5 && RawCordsY <= 6) { yCords = 6; }
+    if (RawCordsY > 6 && RawCordsY <= 7) { yCords = 7; }
+    if (RawCordsY > 7 && RawCordsY <= 8) { yCords = 8; }
+    if (RawCordsY > 8 && RawCordsY <= 9) { yCords = 9; }
+    
+    selectValue(xCords, yCords);
 }
 
 // Function that draws a sudoku grid
