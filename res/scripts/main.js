@@ -6,6 +6,11 @@ var ctx = canvas.getContext("2d");
 ctx.fillStyle = "#ffffff";
 ctx.fillRect(1, 1, 360, 360);
 
+// Mouse Events
+canvas.addEventListener("mousedown", mouseDown, false);
+var clickX;
+var clickY;
+
 // Array to store data and values
 var values = [];
 
@@ -17,44 +22,10 @@ var getValueNum = function(x, y,size) {
     return (((size * (x - 1)) + y) - 1);
 }
 
-var SelectArray = function(array, relx, rely) {
-    var val;
-    if (array == 1) {
-        
-    }
-    
-    if (array == 2) {
-        
-    }
-    
-    if (array == 3) {
-        
-    }
-    
-    if (array == 4) {
-        
-    }
-    
-    if (array == 5) {
-        
-    }
-    
-    if (array == 6) {
-        
-    }
-    
-    if (array == 7) {
-        
-    }
-    
-    if (array == 8) {
-        
-    }
-    
-    if (array == 9) {
-        
-    }
-};
+function mouseDown(event) {
+    clickX = event.offsetX;
+    clickY = event.offsetY;
+}
 
 // Function that draws a sudoku grid
 var drawGrid = function(context) {
