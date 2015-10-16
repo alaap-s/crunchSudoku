@@ -30,6 +30,18 @@ var clear = function(context) {
     ctx.fillRect(1, 1, 360, 360);
 }
 
+//var drawNumber = function(context) {
+//    for (x = 0; x < 9; x++) {
+//        for (y = 0; y < 9; y++) {
+//            if (valueProp[getValueNum((x+1), (y+1), 9)] == 0) {
+//                if !(values[getValueNum((x+1), (y+1), 9)] == 0) {
+//                    context.fillStyle = "#000000";
+//                }
+//            }
+//        }
+//    }
+//}
+
 var hoverValue = function(x, y) {
     clear(ctx);
     drawGrid(ctx);
@@ -72,7 +84,7 @@ function mouseHover(event) {
 }
 
 function mouseDown(event) {
-    
+    alert(xCords + " X|Y " + yCords);
 }
 
 // Function that draws a sudoku grid
