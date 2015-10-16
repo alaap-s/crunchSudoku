@@ -44,9 +44,9 @@ var clear = function(context) {
 
 var hoverValue = function(x, y) {
     clear(ctx);
-    drawGrid(ctx);
     ctx.fillStyle = "#388e3c";
     ctx.fillRect((((x-1) * 40) + 2), (((y-1) * 40) + 2), 38, 38);
+    drawGrid(ctx);
 }
 
 function mouseHover(event) {
