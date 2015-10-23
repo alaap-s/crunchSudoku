@@ -13,6 +13,9 @@ var clickX;
 var clickY;
 var xCords, yCords;
 
+// Select Event
+var selectedX, selectedY;
+
 // Array to store data and values
 var values = [];
 
@@ -29,18 +32,6 @@ var clear = function(context) {
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(1, 1, 360, 360);
 }
-
-//var drawNumber = function(context) {
-//    for (x = 0; x < 9; x++) {
-//        for (y = 0; y < 9; y++) {
-//            if (valueProp[getValueNum((x+1), (y+1), 9)] == 0) {
-//                if !(values[getValueNum((x+1), (y+1), 9)] == 0) {
-//                    context.fillStyle = "#000000";
-//                }
-//            }
-//        }
-//    }
-//}
 
 var hoverValue = function(x, y) {
     clear(ctx);
@@ -83,14 +74,23 @@ function mouseHover(event) {
     hoverValue(xCords, yCords);
 }
 
+var selectValue = function(x, y) {
+    selectedX = x;
+    selectedY = y;
+}
+
 function mouseDown(event) {
-    alert(xCords + " X|Y " + yCords);
+    // Debug :: alert(xCords + " X|Y " + yCords);
+    selectValue(xCords, yCords);
 }
 
 // Function that draws a sudoku grid
 var drawGrid = function(context) {
     // Set stroke color to black
     context.strokeStyle = "#000000";
+    
+    ctx.fillStyle = "#0080ff";
+    ctx.fillRect((((selectedX-1) * 40) + 2), (((selectedY-1) * 40) + 2), 38, 38);
     
     // Draw a 9x9 grid using ctx.strokeRect();
     for (x = 0; x < 9; x++) {
