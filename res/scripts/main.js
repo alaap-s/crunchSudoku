@@ -86,6 +86,9 @@ var selectValue = function(x, y) {
 
 function keyEvent(event) {
     var keycode = event.keyCode;
+    
+    // Debug :: alert(keycode);
+    
     if (selectedX > -1 && selectedY > -1) {
         if (keycode == 48) { alert("0"); }
         if (keycode == 49) { alert("1"); }
@@ -97,6 +100,17 @@ function keyEvent(event) {
         if (keycode == 55) { alert("7"); }
         if (keycode == 56) { alert("8"); }
         if (keycode == 57) { alert("9"); }
+        
+        if (keycode == 96) { alert("0"); }
+        if (keycode == 97) { alert("1"); }
+        if (keycode == 98) { alert("2"); }
+        if (keycode == 99) { alert("3"); }
+        if (keycode == 100) { alert("4"); }
+        if (keycode == 101) { alert("5"); }
+        if (keycode == 102) { alert("6"); }
+        if (keycode == 103) { alert("7"); }
+        if (keycode == 104) { alert("8"); }
+        if (keycode == 105) { alert("9"); }
     }
 }
 
