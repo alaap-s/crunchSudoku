@@ -15,6 +15,11 @@ var xCords, yCords;
 
 // Select Event
 var selectedX, selectedY;
+selectedX = -1;
+selectedY = -1;
+
+// Keyboard Event
+window.addEventListener('keydown',this.keyEvent, false);
 
 // Array to store data and values
 var values = [];
@@ -77,6 +82,22 @@ function mouseHover(event) {
 var selectValue = function(x, y) {
     selectedX = x;
     selectedY = y;
+}
+
+function keyEvent(event) {
+    var keycode = event.keyCode;
+    if (selectedX > -1 && selectedY > -1) {
+        if (keycode == 48) { alert("0"); }
+        if (keycode == 49) { alert("1"); }
+        if (keycode == 50) { alert("2"); }
+        if (keycode == 51) { alert("3"); }
+        if (keycode == 52) { alert("4"); }
+        if (keycode == 53) { alert("5"); }
+        if (keycode == 54) { alert("6"); }
+        if (keycode == 55) { alert("7"); }
+        if (keycode == 56) { alert("8"); }
+        if (keycode == 57) { alert("9"); }
+    }
 }
 
 function mouseDown(event) {
