@@ -27,6 +27,9 @@ var values = [];
 // Array to store property of a value
 var valueProp = [];
 
+// First render flag
+var flag = 0;
+
 // Function to manage 2-dim properties in 1-dim array [Euclid's Division Lemma]
 var getValueNum = function(x, y,size) {
     return (((size * (x - 1)) + y) - 1);
@@ -42,8 +45,9 @@ var hoverValue = function(x, y) {
     clear(ctx);
     ctx.fillStyle = "#388e3c";
     ctx.fillRect((((x-1) * 40) + 2), (((y-1) * 40) + 2), 38, 38);
+    drawArrayGrid(ctx);
     drawGrid(ctx);
-}
+};
 
 function mouseHover(event) {
     clickX = event.offsetX;
@@ -82,41 +86,62 @@ function mouseHover(event) {
 var selectValue = function(x, y) {
     selectedX = x;
     selectedY = y;
-}
+};
 
 function keyEvent(event) {
     var keycode = event.keyCode;
+    var num = 0;
     
     // Debug :: alert(keycode);
     
     if (selectedX > -1 && selectedY > -1) {
-        if (keycode == 48) { alert("0"); }
-        if (keycode == 49) { alert("1"); }
-        if (keycode == 50) { alert("2"); }
-        if (keycode == 51) { alert("3"); }
-        if (keycode == 52) { alert("4"); }
-        if (keycode == 53) { alert("5"); }
-        if (keycode == 54) { alert("6"); }
-        if (keycode == 55) { alert("7"); }
-        if (keycode == 56) { alert("8"); }
-        if (keycode == 57) { alert("9"); }
+        if (keycode == 48) { values[getValueNum(selectedX, selectedY, 9)] = 0; }
+        if (keycode == 49) { values[getValueNum(selectedX, selectedY, 9)] = 1; }
+        if (keycode == 50) { values[getValueNum(selectedX, selectedY, 9)] = 2; }
+        if (keycode == 51) { values[getValueNum(selectedX, selectedY, 9)] = 3; }
+        if (keycode == 52) { values[getValueNum(selectedX, selectedY, 9)] = 4; }
+        if (keycode == 53) { values[getValueNum(selectedX, selectedY, 9)] = 5; }
+        if (keycode == 54) { values[getValueNum(selectedX, selectedY, 9)] = 6; }
+        if (keycode == 55) { values[getValueNum(selectedX, selectedY, 9)] = 7; }
+        if (keycode == 56) { values[getValueNum(selectedX, selectedY, 9)] = 8; }
+        if (keycode == 57) { values[getValueNum(selectedX, selectedY, 9)] = 9; }
         
-        if (keycode == 96) { alert("0"); }
-        if (keycode == 97) { alert("1"); }
-        if (keycode == 98) { alert("2"); }
-        if (keycode == 99) { alert("3"); }
-        if (keycode == 100) { alert("4"); }
-        if (keycode == 101) { alert("5"); }
-        if (keycode == 102) { alert("6"); }
-        if (keycode == 103) { alert("7"); }
-        if (keycode == 104) { alert("8"); }
-        if (keycode == 105) { alert("9"); }
+        if (keycode == 96) { values[getValueNum(selectedX, selectedY, 9)] = 0; }
+        if (keycode == 97) { values[getValueNum(selectedX, selectedY, 9)] = 1; }
+        if (keycode == 98) { values[getValueNum(selectedX, selectedY, 9)] = 2; }
+        if (keycode == 99) { values[getValueNum(selectedX, selectedY, 9)] = 3; }
+        if (keycode == 100) { values[getValueNum(selectedX, selectedY, 9)] = 4; }
+        if (keycode == 101) { values[getValueNum(selectedX, selectedY, 9)] = 5; }
+        if (keycode == 102) { values[getValueNum(selectedX, selectedY, 9)] = 6; }
+        if (keycode == 103) { values[getValueNum(selectedX, selectedY, 9)] = 7; }
+        if (keycode == 104) { values[getValueNum(selectedX, selectedY, 9)] = 8; }
+        if (keycode == 105) { values[getValueNum(selectedX, selectedY, 9)] = 9; }
     }
+    
+    hoverValue(xCords, yCords);
 }
 
 function mouseDown(event) {
     // Debug :: alert(xCords + " X|Y " + yCords);
     selectValue(xCords, yCords);
+}
+
+var drawArrayGrid = function (context) {
+    context.fillStyle = "#000000";
+    context.font = "30px Arial";
+    
+    // xlocal and ylocal are just vars created for the "for" loop
+    for (xlocal = 1; xlocal < 10; xlocal++) {
+        for (ylocal = 1; ylocal < 10; ylocal++) {
+            if (valueProp[getValueNum(xlocal, ylocal, 9)] == 1) {
+                context.fillStyle = "#B71C1C";
+            } else { context.fillStyle = "#000000"; }
+            
+            if (values[getValueNum(xlocal, ylocal, 9)] != 0) {
+                context.fillText(values[getValueNum(xlocal, ylocal, 9)], (((xlocal-1) * 40) + 12), (((ylocal-1) * 40) + 32));
+            }
+        }
+    }
 }
 
 // Function that draws a sudoku grid
@@ -127,12 +152,27 @@ var drawGrid = function(context) {
     ctx.fillStyle = "#0080ff";
     ctx.fillRect((((selectedX-1) * 40) + 2), (((selectedY-1) * 40) + 2), 38, 38);
     
+    
+    if (flag == 0) {
+        // Init array
+        for (x = 0; x < 9; x++) {
+            for (y = 0; y < 9; y++) {
+                values[getValueNum((x + 1), (y+ 1), 9)] = 0;
+                //valueProp[getValueNum((x+ 1), (y+ 1), 9)] = 0;
+            }
+        }
+        flag  = 1;
+    }
+    
+    drawArrayGrid(context);
+    
     // Draw a 9x9 grid using ctx.strokeRect();
     for (x = 0; x < 9; x++) {
         for (y = 0; y < 9; y++) {
             context.strokeRect(((x * 40) + 1), ((y * 40) + 1), 40, 40);
         }
     }
+    
     
     context.beginPath();
     
@@ -169,3 +209,5 @@ for (x = 0; x < 9; x++) {
         valueProp[getValueNum((x+ 1), (y+ 1), 9)] = 0;
     }
 }
+
+drawArrayGrid(ctx);
