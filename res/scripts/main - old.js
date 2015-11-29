@@ -27,9 +27,6 @@ var values = [];
 // Array to store property of a value
 var valueProp = [];
 
-// Array for possible variations for each value
-
-
 // First render flag
 var flag = 0;
 
