@@ -27,8 +27,8 @@ var values = [];
 // Array to store property of a value
 var valueProp = [];
 
-// Array for possible variations for each value
-
+// Array for possible variations dump
+var having = [];
 
 // First render flag
 var flag = 0;
@@ -42,10 +42,6 @@ var clear = function(context) {
     // Make a white [#ffffff] background
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(1, 1, 360, 360);
-}
-
-var checkRow = function(x, y) {
-    
 }
 
 var hoverValue = function(x, y) {
@@ -95,6 +91,231 @@ var selectValue = function(x, y) {
     selectedY = y;
 };
 
+var resetPossiblities = function() {
+    for (n = 0; n < 9; n++) {
+        having[n] = false;
+    }
+}
+
+var checkRow = function(x, y) {
+    for (n = 1; n < 10; n++) {
+        if (values[getValueNum(n, y, 9)] == 1) { having[0] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(n, y, 9)] == 2) { having[1] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(n, y, 9)] == 3) { having[2] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(n, y, 9)] == 4) { having[3] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(n, y, 9)] == 5) { having[4] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(n, y, 9)] == 6) { having[5] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(n, y, 9)] == 7) { having[6] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(n, y, 9)] == 8) { having[7] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(n, y, 9)] == 9) { having[8] = true; /* debug::alert("true"); */ }
+    }
+}
+
+var checkColumn = function(x, y) {
+    for (n = 1; n < 10; n++) {
+        if (values[getValueNum(x, n, 9)] == 1) { having[0] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(x, n, 9)] == 2) { having[1] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(x, n, 9)] == 3) { having[2] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(x, n, 9)] == 4) { having[3] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(x, n, 9)] == 5) { having[4] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(x, n, 9)] == 6) { having[5] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(x, n, 9)] == 7) { having[6] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(x, n, 9)] == 8) { having[7] = true; /* debug::alert("true"); */ }
+        if (values[getValueNum(x, n, 9)] == 9) { having[8] = true; /* debug::alert("true"); */ }
+    }
+}
+
+var checkCell = function(x, y) {
+    if (x > 0 && x < 4) {
+        if (y > 0 && y < 4) {
+            /* Quad I */
+            // debug::alert("Quad I");
+            for (n = 1; n < 4; n++) {
+                for (m = 1; m < 4; m++) {
+                    if (values[getValueNum(n, m, 9)] == 1) { having[0] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 2) { having[1] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 3) { having[2] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 4) { having[3] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 5) { having[4] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 6) { having[5] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 7) { having[6] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 8) { having[7] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 9) { having[8] = true; /* debug::alert("true"); */ }
+                }
+            }
+        }
+        
+        if (y > 3 && y < 7) {
+            /* Quad II */
+            // debug::alert("Quad II");
+            for (n = 1; n < 4; n++) {
+                for (m = 4; m < 7; m++) {
+                    if (values[getValueNum(n, m, 9)] == 1) { having[0] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 2) { having[1] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 3) { having[2] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 4) { having[3] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 5) { having[4] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 6) { having[5] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 7) { having[6] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 8) { having[7] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 9) { having[8] = true; /* debug::alert("true"); */ }
+                }
+            }
+        }
+        
+        if (y > 6 && y < 10) {
+            /* Quad III */
+            // debug::alert("Quad III");
+            for (n = 1; n < 4; n++) {
+                for (m = 7; m < 10; m++) {
+                    if (values[getValueNum(n, m, 9)] == 1) { having[0] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 2) { having[1] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 3) { having[2] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 4) { having[3] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 5) { having[4] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 6) { having[5] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 7) { having[6] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 8) { having[7] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 9) { having[8] = true; /* debug::alert("true"); */ }
+                }
+            }
+        }
+    }
+    
+    if (x > 3 && x < 7) {
+        if (y > 0 && y < 4) {
+            /* Quad IV */
+            // debug::alert("Quad IV");
+            for (n = 4; n < 7; n++) {
+                for (m = 1; m < 4; m++) {
+                    if (values[getValueNum(n, m, 9)] == 1) { having[0] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 2) { having[1] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 3) { having[2] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 4) { having[3] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 5) { having[4] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 6) { having[5] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 7) { having[6] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 8) { having[7] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 9) { having[8] = true; /* debug::alert("true"); */ }
+                }
+            }
+        }
+        if (y > 3 && y < 7) {
+            /* Quad V */
+            // debug::alert("Quad V");
+            for (n = 4; n < 7; n++) {
+                for (m = 4; m < 7; m++) {
+                    if (values[getValueNum(n, m, 9)] == 1) { having[0] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 2) { having[1] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 3) { having[2] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 4) { having[3] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 5) { having[4] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 6) { having[5] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 7) { having[6] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 8) { having[7] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 9) { having[8] = true; /* debug::alert("true"); */ }
+                }
+            }
+        }
+        if (y > 6 && y < 10) {
+            /* Quad VI */
+            // debug::alert("Quad VI");
+            for (n = 4; n < 7; n++) {
+                for (m = 7; m < 10; m++) {
+                    if (values[getValueNum(n, m, 9)] == 1) { having[0] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 2) { having[1] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 3) { having[2] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 4) { having[3] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 5) { having[4] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 6) { having[5] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 7) { having[6] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 8) { having[7] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 9) { having[8] = true; /* debug::alert("true"); */ }
+                }
+            }
+        }
+    }
+    
+    if (x > 6 && x < 10) {
+        if (y > 0 && y < 4) {
+            /* Quad VII */
+            // debug::alert("Quad VII");
+            for (n = 7; n < 10; n++) {
+                for (m = 1; m < 4; m++) {
+                    if (values[getValueNum(n, m, 9)] == 1) { having[0] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 2) { having[1] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 3) { having[2] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 4) { having[3] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 5) { having[4] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 6) { having[5] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 7) { having[6] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 8) { having[7] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 9) { having[8] = true; /* debug::alert("true"); */ }
+                }
+            }
+        }
+        if (y > 3 && y < 7) {
+            /* Quad VIII */
+            // debug::alert("Quad VIII");
+            for (n = 7; n < 10; n++) {
+                for (m = 4; m < 7; m++) {
+                    if (values[getValueNum(n, m, 9)] == 1) { having[0] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 2) { having[1] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 3) { having[2] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 4) { having[3] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 5) { having[4] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 6) { having[5] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 7) { having[6] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 8) { having[7] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 9) { having[8] = true; /* debug::alert("true"); */ }
+                }
+            }
+        }
+        if (y > 6 && y < 10) {
+            /* Quad IX */
+            // debug::alert("Quad IX");
+            for (n = 7; n < 10; n++) {
+                for (m = 7; m < 10; m++) {
+                    if (values[getValueNum(n, m, 9)] == 1) { having[0] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 2) { having[1] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 3) { having[2] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 4) { having[3] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 5) { having[4] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 6) { having[5] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 7) { having[6] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 8) { having[7] = true; /* debug::alert("true"); */ }
+                    if (values[getValueNum(n, m, 9)] == 9) { having[8] = true; /* debug::alert("true"); */ }
+                }
+            }
+        }
+    }
+}
+
+var solveForValue = function(x, y) {
+    resetPossiblities();
+    checkRow(x, y);
+    checkColumn(x, y);
+    checkCell(x, y);
+    
+    var count = 0;
+    for (n = 0; n < 9; n++) {
+        if(having[n] == true) { count++; }
+    }
+    
+    if (count == 8) {
+        if (having[0] == false) { valueProp[getValueNum(x, y, 9)] = 1; values[getValueNum(x, y, 9)] = 1; }
+        if (having[1] == false) { valueProp[getValueNum(x, y, 9)] = 1; values[getValueNum(x, y, 9)] = 2; }
+        if (having[2] == false) { valueProp[getValueNum(x, y, 9)] = 1; values[getValueNum(x, y, 9)] = 3; }
+        if (having[3] == false) { valueProp[getValueNum(x, y, 9)] = 1; values[getValueNum(x, y, 9)] = 4; }
+        if (having[4] == false) { valueProp[getValueNum(x, y, 9)] = 1; values[getValueNum(x, y, 9)] = 5; }
+        if (having[5] == false) { valueProp[getValueNum(x, y, 9)] = 1; values[getValueNum(x, y, 9)] = 6; }
+        if (having[6] == false) { valueProp[getValueNum(x, y, 9)] = 1; values[getValueNum(x, y, 9)] = 7; }
+        if (having[7] == false) { valueProp[getValueNum(x, y, 9)] = 1; values[getValueNum(x, y, 9)] = 8; }
+        if (having[8] == false) { valueProp[getValueNum(x, y, 9)] = 1; values[getValueNum(x, y, 9)] = 9; }
+        return true;
+    } else {return false;} 
+}
+
 function keyEvent(event) {
     var keycode = event.keyCode;
     var num = 0;
@@ -123,6 +344,8 @@ function keyEvent(event) {
         if (keycode == 103) { values[getValueNum(selectedX, selectedY, 9)] = 7; }
         if (keycode == 104) { values[getValueNum(selectedX, selectedY, 9)] = 8; }
         if (keycode == 105) { values[getValueNum(selectedX, selectedY, 9)] = 9; }
+        
+        if (keycode == 83) { solveForValue(selectedX, selectedY); }
     }
     
     hoverValue(xCords, yCords);
@@ -218,3 +441,4 @@ for (x = 0; x < 9; x++) {
 }
 
 drawArrayGrid(ctx);
+
